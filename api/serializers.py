@@ -9,14 +9,6 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
         fields = ["id", "url", "name", "slug", "budget", "budget_left"]
-
-    # def create(self, validated_data):
-    #     validated_data["slug"] = slugify(validated_data["name"])
-    #     project = Project.objects.create(**validated_data)
-    #     return project
-
-    # def partial_update(self, request, pk=None):
-    #     pass
     
         
 

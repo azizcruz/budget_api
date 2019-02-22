@@ -20,5 +20,6 @@ from api.views import redirect_to_api
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("api.urls")),
-    path("", redirect_to_api, name="redirect_to_api")
+    path("api-auth/", include("rest_framework.urls")),
+    path("", redirect_to_api, name = "redirect_to_api"),
 ]
