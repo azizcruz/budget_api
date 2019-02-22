@@ -1,6 +1,6 @@
 # Description
 
-Budget api is a simple budget program that was written as an api to manage projects different parts and show how much expenses was used and how much is still left.
+Budget api is a simple budget application that was written as an api using django/python with DRF to manage projects budget and show how much expenses was used and how much is still left.
 
 # Installation
 
