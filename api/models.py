@@ -12,12 +12,23 @@ class Project(models.Model):
 
     def save(self, **kwargs):
         self.slug = slugify(self.name)
+
+        # If there is no budget left assign budget to budget left.
         if not self.budget_left:
             self.budget_left = self.budget
+
+        # Calculate the current budget left.
+        self.budget_left = self.calculate_budget_left()
+
         super(Project, self).save()
 
     def calculate_budget_left(self):
         project_expenses = Expense.objects.filter(project=self)
+
+        # if there are no expenses, then just return the current budget.
+        if not project_expenses:
+            return self.budget
+
         total_expenses = 0
         for expense in project_expenses:
             total_expenses += expense.amount

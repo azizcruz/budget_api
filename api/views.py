@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from rest_framework import viewsets
 from .serializers import ProjectSerializer, CategorySerializer, ExpenseSerializer
 from .models import Project, Category, Expense
@@ -17,7 +17,7 @@ class ProjectView(viewsets.ModelViewSet):
             project.budget_left = project.calculate_budget_left()
 
         page = self.paginate_queryset(queryset)
-        
+
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
@@ -39,3 +39,9 @@ class CategoryView(viewsets.ModelViewSet):
 class ExpenseView(viewsets.ModelViewSet):
     queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
+
+
+# Handle base route of the website.
+_API_ROUTE = "/api/"
+def redirect_to_api(request):
+    return redirect(_API_ROUTE)
